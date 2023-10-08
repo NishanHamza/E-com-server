@@ -20,7 +20,7 @@ export const login = asyncError(async (req, res, next) => {
   const isMatched = await user.comparePassword(password);
 
   if (!isMatched) {
-    return next(new ErrorHandler("incorrect email and password", 400));
+    return next(new ErrorHandler("Incorrect email and password", 400));
   }
 
   sendToken(user, res, `Welcome Back ${user.name}`, 200);
@@ -91,7 +91,7 @@ export const updateProfile = asyncError(async (req, res) => {
   if (email) user.email = email;
   if (address) user.address = address;
   if (country) user.country = country;
-  if (city) user.city = citypinCode;
+  if (city) user.city = city;
   if (pinCode) user.pinCode = pinCode;
 
   user.save();
@@ -114,7 +114,7 @@ export const changePassword = asyncError(async (req, res, next) => {
 
   const isMatched = await user.comparePassword(oldPassword);
 
-  if (!isMatched) return next(new ErrorHandler("incorrect old password", 400));
+  if (!isMatched) return next(new ErrorHandler("Incorrect Old Password", 400));
 
   user.password = newPassword;
 
@@ -122,7 +122,7 @@ export const changePassword = asyncError(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: "Password changed succesfully",
+    message: "Password Changed Succesfully",
   });
 });
 
@@ -143,7 +143,7 @@ export const updatePic = asyncError(async (req, res) => {
 
   res.status(200).json({
     success: true,
-    message: "Avater updated successfully.",
+    message: "Avater Updated Successfully.",
   });
 });
 
