@@ -131,7 +131,7 @@ export const updatePic = asyncError(async (req, res) => {
 
   const file = getDataUri(req.file);
 
-  if (user.avater) {
+  if (user.avater.public_id) {
     await cloudinary.v2.uploader.destroy(user.avater.public_id);
   }
 
