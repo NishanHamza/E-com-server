@@ -13,7 +13,7 @@ export const getAllProducts = asyncError(async (req, res, next) => {
       $regex: keyword ? keyword : "",
       $options: "i",
     },
-    category: category ? category : undefined,
+    ...(category ? { category } : {}),
   });
 
   res.status(200).json({
@@ -25,7 +25,7 @@ export const getAllProducts = asyncError(async (req, res, next) => {
 export const getAdminProducts = asyncError(async (req, res, next) => {
   const products = await Product.find({}).populate("category");
 
-  const outOfStock = products.filter((i) => i.stock === 0);
+  const outOfStock = products.filter((i) => i.stock == 0);
 
   res.status(200).json({
     success: true,
